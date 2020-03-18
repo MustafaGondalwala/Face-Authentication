@@ -14,7 +14,7 @@ class LoginPage extends React.Component{
 			loading:true
 		})
 		axios({
-			url:"/api/face-identification/login",
+			url:"https://django-ml-backend.herokuapp.com/api/face-identification/login",
 			method:'post',
 			data:data
 		}).then((data)=>{

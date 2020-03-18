@@ -18,7 +18,7 @@ class RegisterPage extends React.Component{
 			'loading':true
 		})
 		axios({
-			url:"/api/face-identification/add-new-face",
+			url:"https://django-ml-backend.herokuapp.com/api/face-identification/add-new-face",
 			method:"post",
 			data: data
 		}).then((data)=> {

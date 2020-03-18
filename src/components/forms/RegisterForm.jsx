@@ -23,7 +23,7 @@ export default class RegisterForm extends React.Component{
 	      data: {...this.state.data,'camera_image':dataUri }
 	    });
 	    axios({
-	    	url:"/api/face-identification/check-for-faces",
+	    	url:"https://django-ml-backend.herokuapp.com/api/face-identification/check-for-faces",
 	    	method:'post',
 	    	data: {
 	    		dataUri
