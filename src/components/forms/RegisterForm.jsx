@@ -4,6 +4,8 @@ import InlineError from "../messages/InlineError"
 import Camera,{ FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import axios from 'axios';
+import Webcam from "react-webcam";
+
 
 export default class RegisterForm extends React.Component{
 	state = {
@@ -16,7 +18,7 @@ export default class RegisterForm extends React.Component{
 	    errors: {}
 	  };
 
-	
+
 
 	 handleTakePhoto = (dataUri) => {
 	    this.setState({
@@ -28,7 +30,7 @@ export default class RegisterForm extends React.Component{
 	    	data: {
 	    		dataUri
 	    	},
-	    	
+
 	    }).then((data)=>{
 	    	if(data.data.total_faces !== 1){
 	    		this.setState({
@@ -41,7 +43,7 @@ export default class RegisterForm extends React.Component{
 	    		this.setState({errors:{}})
 	    	}
 	    })
-  	}	
+  	}
 
 	onChange = e =>
     this.setState({
@@ -57,9 +59,9 @@ export default class RegisterForm extends React.Component{
 
 	    return errors;
 	  };
-	
-	
- 	
+
+
+
 	onSubmit = e => {
 	    e.preventDefault();
 	    const errors = this.validate(this.state.data);
@@ -99,7 +101,8 @@ export default class RegisterForm extends React.Component{
 			          {errors.password && <InlineError text={errors.password} />}
 			        </Form.Field>
 			    <Form.Field>
-		        	
+					<Webcam />
+
 		        	{
 		        		(data.camera_image) ?
 		        		<Container>
@@ -113,7 +116,7 @@ export default class RegisterForm extends React.Component{
 			        	{errors.camera_image && <InlineError text={errors.camera_image} />}
 
 			        	{errors.valid_image && <InlineError text={errors.valid_image} />}
-				    	<Camera 
+				    	<Camera
 						  idealFacingMode = {FACING_MODES.ENVIRONMENT}
 					      idealResolution = {{width: 640, height: 480}}
 					      imageType = {IMAGE_TYPES.PNG}
@@ -126,7 +129,7 @@ export default class RegisterForm extends React.Component{
 					}
 			    </Form.Field>
 		        <Button primary> Next </Button>
-		         
+
 			</Form>
 		)
 	}
